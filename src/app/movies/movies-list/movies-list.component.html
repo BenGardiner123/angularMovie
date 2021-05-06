@@ -7,17 +7,24 @@
     There are no records to display - load some new movis to yur account
  </div>
 
-<div *ngFor="let movie of movies; let index = index" class="movie-container">
+<!-- the ngcontainer is a structural directive that allows you to wrap a structural directive 
+    with another directive wihtout having to put the second div into the dom and potentially creeating more CSS and styling work -->
+ <ng-container  *ngIf="movies && movies.length > 0 ">
+    <div *ngFor="let movie of movies; let index = index" class="movie-container">
  
-  <div>
-    {{index}} {{movie.title|lowercase}}
-    <button style="margin-left: 1rem;" (click)="remove(index)" >Remove</button>
-  </div>
-  <div>
-    {{movie.releaseDate|date:"dd-MMMM-yyyy"|uppercase}}
-  </div>
-  <div>
-    {{movie.price |currency}}
-  </div>
+        <div>
+          {{index}} {{movie.title|lowercase}}
+          <button style="margin-left: 1rem;" (click)="remove(index)" >Remove</button>
+        </div>
 
-</div>
+        <div>
+          {{movie.releaseDate|date:"dd-MMMM-yyyy"|uppercase}}
+        </div>
+
+        <div>
+          {{movie.price |currency}}
+        </div>
+      
+    </div>
+</ng-container>
+
