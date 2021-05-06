@@ -1,0 +1,22 @@
+<h2>Movie Data</h2>
+
+<img *ngIf="!movies" 
+ src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47kj9nigj4dlj0eicnj6fuv6e47gy9qrma25j6d8qi&rid=giphy.gif&ct=g" alt="loading gif"/>
+
+ <div *ngIf="movies?.length === 0 ">
+    There are no records to display - load some new movis to yur account
+ </div>
+
+<div *ngFor="let movie of movies; let index = index" class="movie-container">
+ 
+  <div>
+    {{index}} {{movie.title|lowercase}}
+  </div>
+  <div>
+    {{movie.releaseDate|date:"dd-MMMM-yyyy"|uppercase}}
+  </div>
+  <div>
+    {{movie.price |currency}}
+  </div>
+
+</div>
