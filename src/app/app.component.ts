@@ -23,24 +23,55 @@ export class AppComponent implements OnInit{
       title: 'DogAlpha',
       releaseDate: new Date('2019/12/19'),
       price: 43434232
-    }];
+    },
+    {
+      title: 'Spider-man 3',
+      releaseDate: new Date(),
+      price: 283742
+    },
+    {
+      title: 'The Moce the movue',
+      releaseDate: new Date(),
+      price: 284343
+    },
+    {
+      title: 'DogAlpha',
+      releaseDate: new Date('2019/12/19'),
+      price: 43434232
+    }
+  ];
 
-    this.moviesFutureReleases = [];
-    // [{
-    //   title: 'Spider-man 17',
-    //   releaseDate: new Date(),
-    //   price: 283742
-    // },
-    // {
-    //   title: 'The Moce the movue 5',
-    //   releaseDate: new Date(),
-    //   price: 284343
-    // },
-    // {
-    //   title: 'DogAlpha 56',
-    //   releaseDate: new Date('2019/12/19'),
-    //   price: 43434232
-    // }];
+    this.moviesFutureReleases = 
+    [{
+      title: 'Spider-man 17',
+      releaseDate: new Date(),
+      price: 283742
+    },
+    {
+      title: 'The Moce the movue 5',
+      releaseDate: new Date(),
+      price: 284343
+    },
+    {
+      title: 'DogAlpha 56',
+      releaseDate: new Date('2019/12/19'),
+      price: 43434232
+    },
+    {
+      title: 'Spider-man 17',
+      releaseDate: new Date(),
+      price: 283742
+    },
+    {
+      title: 'The Moce the movue 5',
+      releaseDate: new Date(),
+      price: 284343
+    },
+    {
+      title: 'DogAlpha 56',
+      releaseDate: new Date('2019/12/19'),
+      price: 43434232
+    }]
 }
   
 moviesInTheaters;
