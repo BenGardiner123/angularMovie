@@ -77,7 +77,7 @@ export class AppComponent implements OnInit{
 title = "";
 moviesInTheaters;
 moviesFutureReleases;
-
+display = true;
 
   handleRating(rate: number){
     alert(`The user selected ${rate}`);
