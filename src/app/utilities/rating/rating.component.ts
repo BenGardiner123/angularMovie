@@ -17,6 +17,7 @@ export class RatingComponent implements OnInit {
   selectedRate = 0;
 
   @Output()
+  // here you can use the void return type if you just want to alert but not send som ekind of typed data
   onRating: EventEmitter<number> = new EventEmitter<number>();
   previousRate = 0;
   maxRatingArr = [];

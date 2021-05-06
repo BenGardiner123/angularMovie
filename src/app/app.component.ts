@@ -73,7 +73,8 @@ export class AppComponent implements OnInit{
       price: 43434232
     }]
 }
-  
+
+title = "";
 moviesInTheaters;
 moviesFutureReleases;
 
