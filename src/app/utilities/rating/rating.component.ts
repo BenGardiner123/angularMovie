@@ -13,6 +13,7 @@ export class RatingComponent implements OnInit {
   maxRating = 5;
   @Input()
   selectedRate = 0; 
+  previousRate = 0;
   maxRatingArr = [];
 
 
@@ -25,8 +26,17 @@ export class RatingComponent implements OnInit {
   }
 
   handleMouseLeave(){
+    if(this.previousRate !== 0 )
+    {
+      this.selectedRate = this.previousRate;
+    } else
     this.selectedRate = 0;
+    
   }
 
+  rate(index: number){
+    this.selectedRate = index + 1; 
+    this.previousRate = this.selectedRate;
+  }
 
 }
