@@ -1,0 +1,14 @@
+
+<img *ngIf="!list" 
+ src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47kj9nigj4dlj0eicnj6fuv6e47gy9qrma25j6d8qi&rid=giphy.gif&ct=g" alt="loading gif"/>
+
+ <div *ngIf="list?.length === 0 ">
+    There are no records to display - load some new movies to yur account
+ </div>
+
+<!-- the ngcontainer is a structural directive that allows you to wrap a structural directive 
+with another directive wihtout having to put the second div into the dom and potentially creeating more CSS and styling work -->
+
+ <ng-container  *ngIf="list && list.length > 0 ">
+   <ng-content select="[content]"></ng-content>
+</ng-container> 

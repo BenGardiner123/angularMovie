@@ -1,30 +1,22 @@
-<h2>List of Movies</h2>
-
-<img *ngIf="!movies" 
- src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e47kj9nigj4dlj0eicnj6fuv6e47gy9qrma25j6d8qi&rid=giphy.gif&ct=g" alt="loading gif"/>
-
- <div *ngIf="movies?.length === 0 ">
-    There are no records to display - load some new movis to yur account
- </div>
-
-<!-- the ngcontainer is a structural directive that allows you to wrap a structural directive 
-    with another directive wihtout having to put the second div into the dom and potentially creeating more CSS and styling work -->
- <ng-container  *ngIf="movies && movies.length > 0 ">
-    <div *ngFor="let movie of movies; let index = index" class="movie-container">
+<app-generic-list [list]="movies"> 
+      <ng-container content>
+        <div *ngFor="let movie of movies; let index = index" class="movie-container">
  
-        <div>
-          {{index}} {{movie.title|lowercase}}
-          <button style="margin-left: 1rem;" (click)="remove(index)" >Remove</button>
+            <div>
+              {{index}} {{movie.title|lowercase}}
+              <button style="margin-left: 1rem;" (click)="remove(index)" >Remove</button>
+            </div>
+        
+            <div>
+              {{movie.releaseDate|date:"dd-MMMM-yyyy"|uppercase}}
+            </div>
+        
+            <div>
+              {{movie.price |currency}}
+            </div>
+          
         </div>
+      </ng-container>
+</app-generic-list>
 
-        <div>
-          {{movie.releaseDate|date:"dd-MMMM-yyyy"|uppercase}}
-        </div>
-
-        <div>
-          {{movie.price |currency}}
-        </div>
-      
-    </div>
-</ng-container>
 
