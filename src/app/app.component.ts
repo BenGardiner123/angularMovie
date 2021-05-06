@@ -78,6 +78,8 @@ moviesInTheaters;
 moviesFutureReleases;
 
 
-  
+  handleRating(rate: number){
+    alert(`The user selected ${rate}`);
+  }
 
 }
