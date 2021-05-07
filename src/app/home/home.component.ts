@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
   
   }
 
-title = "";
+
 moviesInTheaters;
 moviesFutureReleases;
 
