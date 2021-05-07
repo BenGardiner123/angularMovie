@@ -10,6 +10,7 @@ import { MaterialModule} from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
 import { RatingComponent } from './utilities/rating/rating.component';
 import { HomeComponent } from './home/home.component';
+import { CreateGenreComponent } from './genres/create-genre/create-genre.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     GenericListComponent,
     MenuComponent,
     RatingComponent,
-    HomeComponent
+    HomeComponent,
+    CreateGenreComponent
   
   ],
   imports: [
