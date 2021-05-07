@@ -1,6 +1,6 @@
   
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,14 +16,28 @@ export class CreateGenreComponent implements OnInit {
   form: FormGroup;
 
   ngOnInit(): void {
-  this.form = this.formbuilder.group({
-    name: ''
-  })
+  this.form = this.formbuilder.group({    
+      name: ['', {
+        validators: [Validators.required]
+        
+      }]
+    })
   }
 
   saveChanges(){
     this.router.navigate(['/genres']);
-    
   }
 
+  getErrorMessageFieldName(){
+  const field = this.form.get('name');
+
+  if(field.hasError('required')){
+    return 'The name field is required';
+  }
+
+  return ' ';
+  
+  }
+    
 }
+
