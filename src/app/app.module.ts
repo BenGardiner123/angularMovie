@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule} from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
 import { RatingComponent } from './utilities/rating/rating.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { RatingComponent } from './utilities/rating/rating.component';
     GenericListComponent,
     MenuComponent,
     RatingComponent,
+    HomeComponent
   
   ],
   imports: [
@@ -30,3 +32,4 @@ import { RatingComponent } from './utilities/rating/rating.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
