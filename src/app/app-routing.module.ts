@@ -19,14 +19,19 @@ const routes: Routes = [
   {path: 'genres', component: IndexGenresComponent},
   {path: 'genres/create', component: CreateGenreComponent},
   {path: 'genres/edit/:id', component: EditGenreComponent},
+
   {path: 'actors', component: IndexActorsComponent},
   {path: 'actors/create', component: CreateActorComponent},
+  // below we paramaterize the route so we can ddynamically 
   {path: 'actors/edit/:id', component: EditActorComponent},
+
   {path: 'movietheaters', component: IndexMovieTheaterComponent},
   {path: 'movietheaters/create', component: CreateMovieTheaterComponent},
   {path: 'movietheaters/edit/:id', component: EditMovieTheaterComponent},
+
   {path: 'movies/create', component: CreateMovieComponent},
   {path: 'movies/edit/:id', component: EditMovieComponent},
+  //the redirect here allows the wildcard which would work on  url like http://8rhfwfshbksjhbcs to take us back to the main page
   {path: '**', redirectTo: ''}
 
 ];
