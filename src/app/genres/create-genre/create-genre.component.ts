@@ -11,7 +11,7 @@ import { firstLetterUppercase } from 'src/app/validators/firstLetterUppercase';
 })
 export class CreateGenreComponent implements OnInit {
 
-  constructor(private router: Router, private formbuilder: FormBuilder) {
+  constructor(private router: Router) {
    }
 
   form: FormGroup;
@@ -19,34 +19,14 @@ export class CreateGenreComponent implements OnInit {
 
   //validators is a class we can access that has a ton of different ones in the angualr docs
   ngOnInit(): void {
-  this.form = this.formbuilder.group({    
-      name: ['', {
-        validators: [Validators.required, Validators.minLength(3), firstLetterUppercase()]
-        
-      }]
-    })
-  }
 
+  }
   saveChanges(){
     this.router.navigate(['/genres']);
   }
 
-  getErrorMessageFieldName(){
-  const field = this.form.get('name');
 
-  if(field.hasError('required'))
-  {
-    return 'The name field is required';
-  }
-  if(field.hasError('minlength')){
-    return 'The minimum length is 3 charactes';
-  }
-  if(field.hasError('firstLetterUppercase')){
-    return field.getError('firstLetterUppercase').message;
-  }
-  return ' ';
   
-  }
-    
+   
 }
 
