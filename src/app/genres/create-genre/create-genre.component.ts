@@ -15,10 +15,12 @@ export class CreateGenreComponent implements OnInit {
 
   form: FormGroup;
 
+
+  //validators is a class we can access that has a ton of different ones in the angualr docs
   ngOnInit(): void {
   this.form = this.formbuilder.group({    
       name: ['', {
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.minLength(3)]
         
       }]
     })
@@ -34,7 +36,12 @@ export class CreateGenreComponent implements OnInit {
   if(field.hasError('required')){
     return 'The name field is required';
   }
-
+  if(field.hasError('minlength')){
+    return 'The minimum length is 3 charactes';
+  }
+  if(field.hasError('firstLetterUppercase')){
+    return field.getError('firstLetterUppercase').message;
+  }
   return ' ';
   
   }
