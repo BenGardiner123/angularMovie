@@ -8,7 +8,7 @@
     <mat-form-field appearance="outline">
         <mat-label>Name*</mat-label>
         <input formControlName="name" matInput/>
-        <mat-error *ngIf="form.invalid" {{getErrorMessageFieldName()}}></mat-error>
+        <mat-error *ngIf="form.invalid"> {{ getErrorMessageFieldName() }} ></mat-error>
     </mat-form-field>
 
     <div>
