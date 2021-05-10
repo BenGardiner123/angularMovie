@@ -15,17 +15,40 @@ export class MoviesFilterComponent implements OnInit {
 
   genres = [{id:1, name: 'Drama'}, {id:2, name:'Action'}]
 
+  movies = [
+    {title: 'Spider-man', poster:'https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_UX182_CR0,0,182,268_AL_.jpg'},
+    {title: 'Mortal Kombat', poster:'https://m.media-amazon.com/images/M/MV5BY2ZlNWIxODMtN2YwZi00ZjNmLWIyN2UtZTFkYmZkNDQyNTAyXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UX182_CR0,0,182,268_AL_.jpg'},
+    {title: 'Godzilla v Kong', poster:'https://m.media-amazon.com/images/M/MV5BZmYzMzU4NjctNDI0Mi00MGExLWI3ZDQtYzQzYThmYzc2ZmNjXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_UX182_CR0,0,182,268_AL_.jpg'},
+
+  ];
+
+  originalMovies = this.movies;
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      title: ' ',
-      genreID: 0,
+      title: '',
+      genreId: 0,
       upcomingReleases: false,
       inTheaters: false
-  })
+  });
+
+  this.form.valueChanges.subscribe(values => {
+
+    this.movies = this.originalMovies;
+    this.filterMovies(values);
+  });
+
+
+  }
+
+  filterMovies(values: any){
+    if (values.title){
+      this.movies = this.movies.filter(movies => movies.title.indexOf(values.title) !== -1);
+    }
   }
 
   cleanForm(){
-    
+
   }
 
 }
