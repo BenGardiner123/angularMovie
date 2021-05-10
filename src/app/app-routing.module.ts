@@ -13,6 +13,7 @@ import { EditMovieTheaterComponent } from './movie-theaters/edit-movie-theater/e
 import { IndexMovieTheaterComponent } from './movie-theaters/index-movie-theater/index-movie-theater.component';
 import { CreateMovieComponent } from './movies/create-movie/create-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
+import { MoviesFilterComponent } from './movies/movies-filter/movies-filter.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,10 +29,12 @@ const routes: Routes = [
   {path: 'movietheaters', component: IndexMovieTheaterComponent},
   {path: 'movietheaters/create', component: CreateMovieTheaterComponent},
   {path: 'movietheaters/edit/:id', component: EditMovieTheaterComponent},
-
+  
   {path: 'movies/create', component: CreateMovieComponent},
   {path: 'movies/edit/:id', component: EditMovieComponent},
+  {path: 'movies/filter', component: MoviesFilterComponent},
   //the redirect here allows the wildcard which would work on  url like http://8rhfwfshbksjhbcs to take us back to the main page
+
   {path: '**', redirectTo: ''}
 
 ];
