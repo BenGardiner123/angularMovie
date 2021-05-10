@@ -48,7 +48,7 @@ export class MoviesFilterComponent implements OnInit {
   }
 
   cleanForm(){
-
+    this.form.reset;
   }
 
 }
