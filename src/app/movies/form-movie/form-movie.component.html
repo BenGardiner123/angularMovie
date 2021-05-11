@@ -1,11 +1,11 @@
 <form (submit)="saveChanges()"[formGroup]="form">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
         <mat-label>Title*</mat-label>
         <input formControlName="title" matInput/>
         <mat-error>Title feild is required</mat-error>
     </mat-form-field>
 
-    <div>
+    <div class="checkbox-container">
         <mat-checkbox formControlName="inTheaters">inTheaters</mat-checkbox>
     </div>
 
@@ -21,5 +21,28 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <h4>
+        Select The Poster
+        <app-input-img [urlCurrentImage]="model?.poster"
+        (onImageSelected)="onImageSelected($event)"
+        ></app-input-img>
+    </h4>
+
+    <h4>
+        Summary
+    </h4>
+
+    <app-input-markdown 
+    [markdownContent]="model?.summary"
+    (changeMarkdown)="changeMarkdown($event)"
+    ></app-input-markdown>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.disabled">
+            Save Changes
+        </button>
+        <a mat-stroked-button routerLink="/">Cancel</a>
+    </div>
 
 </form>

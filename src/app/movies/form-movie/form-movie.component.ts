@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { movieDTO } from '../movie.model';
 
 @Component({
   selector: 'app-form-movie',
@@ -12,6 +13,9 @@ export class FormMovieComponent implements OnInit {
 
   form: FormGroup;
 
+  @Input()
+  model: movieDTO;
+
   ngOnInit(): void {
   this.form = this.formBuilder.group({
     title: ['',{
@@ -23,11 +27,22 @@ export class FormMovieComponent implements OnInit {
     releaseDate: '',
     poster: '',
     
-  })
+  });
+  if(this.model !== undefined){
+    this.form.patchValue(this.model);
+  }
+  }
+
+  onImageSelected(file: File){
+    this.form.get('poster').setValue(file)
+  }
+
+  changeMarkdown(content: string){
+    this.form.get('summary').setValue(content);
   }
 
   saveChanges(){
-    
+
   }
 
 }
