@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, tileLayer } from 'leaflet';
+import { latLng, LeafletMouseEvent, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -21,4 +21,9 @@ export class MapComponent implements OnInit {
     center: latLng(46.879966, -121.726909)
   };
 
+  handleMapClick(event: LeafletMouseEvent){
+    const latitude = event.latlng.lat;
+    const longditude = event.latlng.lng;
+    console.log({latitude, longditude});
+  }
 }
