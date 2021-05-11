@@ -7,7 +7,9 @@ import { MoviesListComponent } from './movies/movies-list/movies-list.component'
 import { GenericListComponent } from './utilities/generic-list/generic-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {MarkdownComponent, MarkdownModule} from 'ngx-markdown'
+import { MarkdownModule } from 'ngx-markdown'
+import { LeafletModule } from '@asymmetrik/ngx-leaflet'
+
 
 import {MaterialModule} from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
@@ -30,6 +32,7 @@ import { FormActorComponent } from './actors/form-actor/form-actor.component';
 import { InputImgComponent } from './utilities/input-img/input-img.component';
 import { InputMarkdownComponent } from './utilities/input-markdown/input-markdown.component';
 import { MovieTheaterFormComponent } from './movie-theaters/movie-theater-form/movie-theater-form.component';
+import { MapComponent } from './utilities/map/map.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import { MovieTheaterFormComponent } from './movie-theaters/movie-theater-form/m
     InputImgComponent,
     InputMarkdownComponent,
     MovieTheaterFormComponent,
+    MapComponent,
     
     
   ],
@@ -67,6 +71,7 @@ import { MovieTheaterFormComponent } from './movie-theaters/movie-theater-form/m
     ReactiveFormsModule,
     FormsModule,
     MarkdownModule.forRoot(),
+    LeafletModule
 
   ],
   providers: [],
