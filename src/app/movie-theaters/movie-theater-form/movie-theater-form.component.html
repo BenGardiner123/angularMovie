@@ -6,7 +6,9 @@
     </mat-form-field>
 
     <h4>Select the location of the Theater</h4>
-    <app-map ></app-map>
+    <app-map 
+    [initalCoordiantes]="initalCoordiantes"
+    (onSelectedLocation)="onSelectedLocation($event)"></app-map>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">Save Changes</button>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { latLng, LeafletMouseEvent, marker, Marker, tileLayer, icon } from 'leaflet';
 import * as L from 'leaflet';
+import { coordinatesMap } from './coordinate';
 
 //https://www.digitalocean.com/community/tutorials/angular-angular-and-leaflet-marker-service
 //even though i followed the directions form asyemetirux it didnt work ... this did though
@@ -30,7 +31,14 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.layers = this.initalCoordiantes.map(value => marker([value.latitude, value.longitude]))
   }
+
+  @Input()
+  initalCoordiantes: coordinatesMap[]= [];
+
+  @Output()
+  onSelectedLocation = new EventEmitter<coordinatesMap>();
 
   //set the basic options for when the map starts
   options = {
@@ -51,7 +59,7 @@ export class MapComponent implements OnInit {
     console.log({latitude, longitude});
     this.layers = [];
     this.layers.push(marker([latitude, longitude]));
-    //this.onSelectedLocation.emit({latitude, longitude});
+    this.onSelectedLocation.emit({latitude, longitude});
   }
 
  
