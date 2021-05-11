@@ -23,13 +23,13 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
+              "assets",
+              "favicon.ico",
               {
                 "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
-                "output": "./assets/"
-                }
+                "output": "assets/"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -93,13 +93,14 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
+              "assets",
+              "favicon.ico",
               {
                 "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
-                "output": "leaflet/"
+                "output": "assets/"
               }
+            
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
