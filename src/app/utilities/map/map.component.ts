@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, LeafletMouseEvent, tileLayer } from 'leaflet';
+import { latLng, LeafletMouseEvent, marker, Marker, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -17,13 +17,17 @@ export class MapComponent implements OnInit {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: 'Angular Movies' })
     ],
-    zoom: 5,
-    center: latLng(46.879966, -121.726909)
+    zoom: 14,
+    center: latLng(-26.531495547591952, 153.08187312024532)
   };
+
+  layers: Marker<any>[] = [];
 
   handleMapClick(event: LeafletMouseEvent){
     const latitude = event.latlng.lat;
-    const longditude = event.latlng.lng;
-    console.log({latitude, longditude});
+    const longitude = event.latlng.lng;
+    console.log({latitude, longitude});
+    this.layers.push(marker([latitude, longitude]));
+
   }
 }
