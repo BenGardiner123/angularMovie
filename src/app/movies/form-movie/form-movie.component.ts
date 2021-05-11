@@ -16,8 +16,18 @@ export class FormMovieComponent implements OnInit {
   this.form = this.formBuilder.group({
     title: ['',{
       validators:[Validators.required]
-    }]
+    }],
+    summary: '',
+    inTheaters: false,
+    trailer: '',
+    releaseDate: '',
+    poster: '',
+    
   })
+  }
+
+  saveChanges(){
+    
   }
 
 }

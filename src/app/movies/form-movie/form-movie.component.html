@@ -1,1 +1,25 @@
-<p>form-movie works!</p>
+<form (submit)="saveChanges()"[formGroup]="form">
+    <mat-form-field>
+        <mat-label>Title*</mat-label>
+        <input formControlName="title" matInput/>
+        <mat-error>Title feild is required</mat-error>
+    </mat-form-field>
+
+    <div>
+        <mat-checkbox formControlName="inTheaters">inTheaters</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Trailer</mat-label>
+        <input formControlName="trailer" matInput/>
+        
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Release Date</mat-label>
+        <input formControlName="releaseDate" matInput [matDatepicker]="picker"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+</form>
