@@ -7,6 +7,7 @@ export interface movieCreationDTO {
     inTheaters: boolean;
     releaseDate: Date;
     trailer: string;
+    genresIds: number[];
 }
 
 export interface movieDTO {
@@ -16,4 +17,5 @@ export interface movieDTO {
     inTheaters: boolean;
     releaseDate: Date;
     trailer: string;
+   
 }

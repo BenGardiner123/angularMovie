@@ -24,7 +24,7 @@ export class MulitpleSelectorComponent implements OnInit {
     this.NonSelectedItems.splice(index, 1);
   }
 
-  deSelect(item: multipleSelectorModel, index: number){
+  deselect(item: multipleSelectorModel, index: number){
     this.NonSelectedItems.push(item);
     this.SelectedItems.splice(index, 1);
   }
