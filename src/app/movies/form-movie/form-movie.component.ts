@@ -19,8 +19,10 @@ export class FormMovieComponent implements OnInit {
   model: movieDTO;
 
   @Output()
+  // this is tied to the save changes button
   onSaveChanges = new EventEmitter<movieCreationDTO>();
 
+  // -------------------------------------------------------------------------------------------
   // creating some in memory data to test the multiple genre picker component
   nonSelectedGenres: multipleSelectorModel[] = [
     {key:1 , value:'Drama'},
@@ -31,8 +33,19 @@ export class FormMovieComponent implements OnInit {
 
   selectedGenres: multipleSelectorModel[] = [];
 
+  nonSelectedMovieTheaters: multipleSelectorModel[] = [
+    {key: 1, value: 'Mt Coolum' },
+    {key: 2, value: 'Eastland' },
+    {key: 3, value: 'Noosa' }
+  ]
+  
+  selectedMovieTheaters: multipleSelectorModel[] = [];
+
+//  --------------------------- end in memory data ---------------------------------------------
+
   ngOnInit(): void {
   this.form = this.formBuilder.group({
+    //you can stack different validators here inside the array
     title: ['',{
       validators:[Validators.required]
     }],

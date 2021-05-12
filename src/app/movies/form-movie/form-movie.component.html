@@ -43,7 +43,15 @@
         Select the genres
     </h4>
 
-    <app-mulitple-selector [NonSelectedItems]="nonSelectedGenres" [SelectedItems]="selectedGenres" ></app-mulitple-selector>
+    <app-mulitple-selector [NonSelectedItems]="nonSelectedGenres" 
+    [SelectedItems]="selectedGenres" ></app-mulitple-selector>
+
+    <h4>
+        Select the Movie Thearer
+    </h4>
+
+    <app-mulitple-selector [NonSelectedItems]="nonSelectedMovieTheaters" 
+    [SelectedItems]="selectedMovieTheaters" ></app-mulitple-selector>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
