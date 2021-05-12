@@ -34,12 +34,13 @@
     </h4>
 
     <app-input-markdown 
+
     [markdownContent]="model?.summary"
     (changeMarkdown)="changeMarkdown($event)"
     ></app-input-markdown>
 
     <div>
-        <button mat-flat-button color="primary" [disabled]="form.disabled">
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
             Save Changes
         </button>
         <a mat-stroked-button routerLink="/">Cancel</a>

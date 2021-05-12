@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { movieDTO } from '../movie.model';
+import { EventEmitter } from '@angular/core';
+import { movieCreationDTO, movieDTO } from '../movie.model';
 
 @Component({
   selector: 'app-form-movie',
@@ -15,6 +16,9 @@ export class FormMovieComponent implements OnInit {
 
   @Input()
   model: movieDTO;
+
+  @Output()
+  onSaveChanges = new EventEmitter<movieCreationDTO>();
 
   ngOnInit(): void {
   this.form = this.formBuilder.group({
@@ -42,7 +46,7 @@ export class FormMovieComponent implements OnInit {
   }
 
   saveChanges(){
-
+    this.onSaveChanges.emit(this.form.value);
   }
 
 }
