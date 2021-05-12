@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -49,6 +50,15 @@ export class ActorsAutocompleteComponent implements OnInit {
   remove(actor){
     const index = this.selectedActors.findIndex(a => a.name === actor.name);
     this.selectedActors.splice(index, 1);
+    this.table.renderRows();
+  }
+
+  dropped(event: CdkDragDrop<any[]>){
+    //this gets the idex of the actor in the array when the action happens
+    const previousIndex = this.selectedActors.findIndex(actor => actor === event.item.data);
+    //this built in function "moveItemInArray" then allwos us to pass in the three params to set the new order
+    moveItemInArray(this.selectedActors, previousIndex, event.currentIndex);
+    // then we render the table with the new order
     this.table.renderRows();
   }
 
