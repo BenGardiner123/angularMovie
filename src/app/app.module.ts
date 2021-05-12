@@ -36,6 +36,7 @@ import { MovieTheaterFormComponent } from './movie-theaters/movie-theater-form/m
 import { MapComponent } from './utilities/map/map.component';
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { MulitpleSelectorComponent } from './utilities/mulitple-selector/mulitple-selector.component';
+import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { MulitpleSelectorComponent } from './utilities/mulitple-selector/mulitpl
     MapComponent,
     FormMovieComponent,
     MulitpleSelectorComponent,
+    ActorsAutocompleteComponent,
     
     
   ],
