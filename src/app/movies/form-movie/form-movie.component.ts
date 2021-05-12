@@ -54,7 +54,8 @@ export class FormMovieComponent implements OnInit {
     trailer: '',
     releaseDate: '',
     poster: '',
-    genresIds: ''
+    genresIds: '',
+    movieTheaterIds: ''
     
   });
   if(this.model !== undefined){
@@ -73,6 +74,10 @@ export class FormMovieComponent implements OnInit {
   saveChanges(){
     const genresIds = this.selectedGenres.map(value => value.key)
     this.form.get('genresIds').setValue(genresIds)
+
+    const movieTheaterIds = this.selectedMovieTheaters.map(value => value.key)
+    this.form.get('movieTheaterIds').setValue(movieTheaterIds)
+
     this.onSaveChanges.emit(this.form.value);
   }
 

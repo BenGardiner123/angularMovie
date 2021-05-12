@@ -8,6 +8,7 @@ export interface movieCreationDTO {
     releaseDate: Date;
     trailer: string;
     genresIds: number[];
+    movieTheaterIds: number[];
 }
 
 export interface movieDTO {
