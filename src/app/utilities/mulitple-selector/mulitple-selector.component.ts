@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { multipleSelector, multipleSelectorModel } from './multiple-selector.model';
+import { multipleSelectorModel } from './multiple-selector.model';
 
 @Component({
   selector: 'app-mulitple-selector',
@@ -11,10 +11,10 @@ export class MulitpleSelectorComponent implements OnInit {
   constructor() { }
 
   @Input()
-  SelectedItems: multipleSelector[] = [];
+  SelectedItems: multipleSelectorModel[] = [];
 
   @Input()
-  NonSelectedItems: multipleSelector[] = [];
+  NonSelectedItems: multipleSelectorModel[] = [];
 
   ngOnInit(): void {
   }
@@ -30,6 +30,8 @@ export class MulitpleSelectorComponent implements OnInit {
   }
 
   selectAll(){
+    // the ... spread operator is taking each element in the array and spreading it into the new array
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
     this.SelectedItems.push(...this.NonSelectedItems);
     this.NonSelectedItems = [];
   }

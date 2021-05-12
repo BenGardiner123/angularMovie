@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { movieCreationDTO, movieDTO } from '../movie.model';
+import { multipleSelectorModel } from 'src/app/utilities/mulitple-selector/multiple-selector.model';
 
 @Component({
   selector: 'app-form-movie',
@@ -19,6 +20,16 @@ export class FormMovieComponent implements OnInit {
 
   @Output()
   onSaveChanges = new EventEmitter<movieCreationDTO>();
+
+  // creating some in memory data to test the multiple genre picker component
+  nonSelectedGenres: multipleSelectorModel[] = [
+    {key:1 , value:'Drama'},
+    {key:2 , value:'ACtion'},
+    {key:3 , value:'Comedy'}
+
+  ];
+
+  selectedGenres: multipleSelectorModel[] = [];
 
   ngOnInit(): void {
   this.form = this.formBuilder.group({

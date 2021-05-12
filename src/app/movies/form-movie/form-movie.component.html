@@ -43,7 +43,7 @@
         Select the genres
     </h4>
 
-    <app-mulitple-selector></app-mulitple-selector>
+    <app-mulitple-selector [NonSelectedItems]="nonSelectedGenres" [SelectedItems]="selectedGenres" ></app-mulitple-selector>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
