@@ -18,4 +18,8 @@ export class GenresService {
     return this.http.get<genreDTO[]>(this.apiURL);
   }
 
+  create(genre: genreCreationDTO){
+    return this.http.post(this.apiURL, genre);
+  }
+
 }
