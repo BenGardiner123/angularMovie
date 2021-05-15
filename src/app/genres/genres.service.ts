@@ -12,11 +12,10 @@ export class GenresService {
   constructor(private http: HttpClient) { }
 
   //this stores the url location in the environment variables so you dont have to repeat every time 
-  private apiURL = environment.apiURL + '/genres';
+  private apiURL = environment.apiURL + '/genres'
 
-  getAll(): Observable<genreDTO[]>
-  {
-    return this.http.get<genreDTO[]>(this.apiURL)
+  getAll(): Observable<genreDTO[]>{
+    return this.http.get<genreDTO[]>(this.apiURL);
   }
 
 }
