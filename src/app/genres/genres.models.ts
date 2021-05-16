@@ -3,6 +3,6 @@ export interface genreCreationDTO {
 }
 
 export interface genreDTO {
-    Id: number;
+    id: number;
     name: string;
 }
