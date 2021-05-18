@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { genreDTO } from '../genres.models';
 import { GenresService } from '../genres.service';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 
 @Component({
