@@ -27,7 +27,12 @@ export class GenresService {
   }
 
   edit(id: number, genre: genreCreationDTO){
+    //for updating entities we use a put
     return this.http.put(`${this.apiURL}/${id}`, genre);
   }
 
+  delete(id: number){
+    //for updating entities we use a put
+    return this.http.delete(`${this.apiURL}/${id}`);
+  }
 }
