@@ -35,7 +35,7 @@ export class ActorsService {
     const formData = this.buildFormData(actor);
     return this.http.put(`${this.apiURL}/${id}`, formData);
   }
-
+  
   //we need to use this to send the picture as a file to the API
   private buildFormData(actor: actorCreationDTO): FormData {
     const formData = new FormData();
