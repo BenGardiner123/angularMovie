@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { coordinatesMap } from 'src/app/utilities/map/coordinate';
-import { movieTheaterCreationDTO, movieTheaterDTO } from '../theaters.model';
+import { movieTheatersCreationDTO, movieTheatersDTO } from '../theaters.model';
 
 @Component({
   selector: 'app-movie-theater-form',
@@ -10,34 +10,34 @@ import { movieTheaterCreationDTO, movieTheaterDTO } from '../theaters.model';
 })
 export class MovieTheaterFormComponent implements OnInit {
 
-  constructor(private formbuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
-  form: FormGroup;
+  form: FormGroup
 
   @Input()
-  model: movieTheaterDTO;
+  model: movieTheatersDTO;
 
   @Output()
-  onSaveChanges = new EventEmitter<movieTheaterCreationDTO>();
+  onSaveChanges = new EventEmitter<movieTheatersCreationDTO>();
 
   initialCoordinates: coordinatesMap[] = [];
-  
+
   ngOnInit(): void {
-    this.form = this.formbuilder.group({
-      name:['', {
-        validators: [Validators.required]
-      }],
-      latitude: ['', {
+    this.form = this.formBuilder.group({
+      name: ['', {
         validators: [Validators.required]
       }],
       longitude: ['', {
         validators: [Validators.required]
+      }],
+      latitude: ['', {
+        validators: [Validators.required]
       }]
-    });
+    })
 
-    if(this.model !== undefined){
+    if (this.model !== undefined){
       this.form.patchValue(this.model);
-      this.initialCoordinates.push({latitude:this.model.latitude, longitude:this.model.longitude})
+      this.initialCoordinates.push({latitude: this.model.latitude, longitude: this.model.longitude});
     }
   }
 
@@ -47,7 +47,6 @@ export class MovieTheaterFormComponent implements OnInit {
 
   saveChanges(){
     this.onSaveChanges.emit(this.form.value);
-    console.log(this.form.value);
   }
 
 }

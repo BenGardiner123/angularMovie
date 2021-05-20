@@ -1,36 +1,37 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { movieTheaterCreationDTO, movieTheaterDTO } from './theaters.model';
+import { movieTheatersCreationDTO, movieTheatersDTO } from './theaters.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieTheatersService {
 
-  constructor(private httpClient: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-  private apiURL = environment.apiURL + '/movietheaters';
+  private apiURL = environment.apiURL + '/movieTheaters';
 
-  public getById(id: number): Observable<movieTheaterDTO>{
-    return this.httpClient.get<movieTheaterDTO>(`${this.apiURL}/${id}`);
-
+  public get(): Observable<movieTheatersDTO[]>{
+    return this.http.get<movieTheatersDTO[]>(this.apiURL);
   }
 
-  public get(): Observable<movieTheaterDTO[]>{
-    return this.httpClient.get<movieTheaterDTO[]>(this.apiURL);
-
+  public getById(id: number): Observable<movieTheatersDTO>{
+    return this.http.get<movieTheatersDTO>(`${this.apiURL}/${id}`);
   }
 
-  public create(movieTheaterDTO: movieTheaterCreationDTO){
-    return this.httpClient.post(this.apiURL, movieTheaterDTO);
+  public create(movieTheaterDTO: movieTheatersCreationDTO){
+    return this.http.post(this.apiURL, movieTheaterDTO);
   }
 
-  public edit(id: number, movieTheaterDTO: movieTheaterCreationDTO){
-    
-  //  console.log(`${this.apiURL}/${id}`, movieTheaterDTO);
-    return this.httpClient.put(`${this.apiURL}/${id}`, movieTheaterDTO);
+  public edit(id: number, movieTheaterDTO: movieTheatersCreationDTO){
+    return this.http.put(`${this.apiURL}/${id}`, movieTheaterDTO);
+  }
+
+  public delete(id: number){
+    return this.http.delete(`${this.apiURL}/${id}`);
   }
 
 }
