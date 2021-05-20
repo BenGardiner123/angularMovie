@@ -16,7 +16,7 @@ export class CreateMovieTheaterComponent implements OnInit {
   }
 
   saveChanges(movieTheater: movieTheaterCreationDTO){
-    console.log(movieTheater);
+    //console.log(movieTheater);
     this.movieTheatersService.create(movieTheater).subscribe(() => (
         this.router.navigate(['/movietheaters'])
     ));

@@ -32,11 +32,11 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.layers = this.initalCoordiantes.map(value => marker([value.latitude, value.longitude]))
+    this.layers = this.initialCoordinates.map(value => marker([value.latitude, value.longitude]))
   }
 
   @Input()
-  initalCoordiantes: coordinatesMap[]= [];
+  initialCoordinates: coordinatesMap[]= [];
 
   @Output()
   onSelectedLocation = new EventEmitter<coordinatesMap>();

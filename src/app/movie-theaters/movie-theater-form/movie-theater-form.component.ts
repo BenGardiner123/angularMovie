@@ -18,9 +18,9 @@ export class MovieTheaterFormComponent implements OnInit {
   model: movieTheaterDTO;
 
   @Output()
-  onSavedChanges = new EventEmitter<movieTheaterCreationDTO>();
+  onSaveChanges = new EventEmitter<movieTheaterCreationDTO>();
 
-  initalCoordiantes: coordinatesMap[] = [];
+  initialCoordinates: coordinatesMap[] = [];
   
   ngOnInit(): void {
     this.form = this.formbuilder.group({
@@ -37,7 +37,7 @@ export class MovieTheaterFormComponent implements OnInit {
 
     if(this.model !== undefined){
       this.form.patchValue(this.model);
-      this.initalCoordiantes.push({latitude:this.model.latitude, longitude:this.model.longitude})
+      this.initialCoordinates.push({latitude:this.model.latitude, longitude:this.model.longitude})
     }
   }
 
@@ -46,7 +46,8 @@ export class MovieTheaterFormComponent implements OnInit {
   }
 
   saveChanges(){
-    this.onSavedChanges.emit(this.form.value);
+    this.onSaveChanges.emit(this.form.value);
+    console.log(this.form.value);
   }
 
 }
