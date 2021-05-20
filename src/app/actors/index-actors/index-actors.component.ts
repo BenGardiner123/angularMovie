@@ -21,10 +21,12 @@ export class IndexActorsComponent implements OnInit {
   pageSize = 5;
 
   ngOnInit(): void {
+    ///this loads all the actors on the page starting
     this.loadData();
   }
 
   loadData(){
+    //decoupling this logic allows us to reuse the logic when we delete to reload the page
     this.actorService.get(this.currentPage, this.pageSize).subscribe((repsonse: HttpResponse<actorDTO[]>) => {
       this.actors = repsonse.body;
       this.totalAmountOfRecords = repsonse.headers.get("totalAmountOfRecords");
@@ -37,8 +39,10 @@ export class IndexActorsComponent implements OnInit {
     this.loadData();
   }
 
-  delete(){
-
+  delete(id: number){
+    this.actorService.delete(id).subscribe(() =>{
+      this.loadData();
+        });
   }
 
 }
