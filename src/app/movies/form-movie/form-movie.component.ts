@@ -22,23 +22,16 @@ export class FormMovieComponent implements OnInit {
   // this is tied to the save changes button
   onSaveChanges = new EventEmitter<movieCreationDTO>();
 
-  // -------------------------------------------------------------------------------------------
-  // creating some in memory data to test the multiple genre picker component
-  nonSelectedGenres: multipleSelectorModel[] = [
-    {key:1 , value:'Drama'},
-    {key:2 , value:'ACtion'},
-    {key:3 , value:'Comedy'}
+  @Input()
+  nonSelectedGenres: multipleSelectorModel[] = [];
 
-  ];
-
+  @Input()
   selectedGenres: multipleSelectorModel[] = [];
 
-  nonSelectedMovieTheaters: multipleSelectorModel[] = [
-    {key: 1, value: 'Mt Coolum' },
-    {key: 2, value: 'Eastland' },
-    {key: 3, value: 'Noosa' }
-  ]
-  
+  @Input()
+  nonSelectedMovieTheaters: multipleSelectorModel[] = [];
+
+  @Input()
   selectedMovieTheaters: multipleSelectorModel[] = [];
 
 //  --------------------------- end in memory data ---------------------------------------------
