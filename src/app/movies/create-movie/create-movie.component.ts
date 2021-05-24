@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { multipleSelectorModel } from 'src/app/utilities/mulitple-selector/multiple-selector.model';
 import { movieCreationDTO } from '../movie.model';
 import { MoviesService } from '../movies.service';
@@ -11,7 +12,8 @@ import { MoviesService } from '../movies.service';
 })
 export class CreateMovieComponent implements OnInit {
 
-  constructor(private moviesService: MoviesService) { }
+
+  constructor(private moviesService: MoviesService, private router: Router) { }
 
   nonSelectedGenres: multipleSelectorModel[];
   nonSelectedMovieTheaters: multipleSelectorModel[];
@@ -30,10 +32,10 @@ export class CreateMovieComponent implements OnInit {
   }
 
   saveChanges(movieCreationDTO: movieCreationDTO){
-    console.log(movieCreationDTO);
-    // this.moviesService.create(movieCreationDTO).subscribe(id => {
-    //   this.router.navigate(['/movie/' + id]);
-//
+    console.log('this is form save changes in the create movie component', movieCreationDTO);
+    this.moviesService.create(movieCreationDTO).subscribe(id => {
+      this.router.navigate(['/movie/' + id]);
+    })
   }
 
 }

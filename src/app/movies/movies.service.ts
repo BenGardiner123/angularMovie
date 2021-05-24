@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MoviePostGetDTO } from './movie.model';
+import { formatDateFormData } from '../utilities/utils';
+import { movieCreationDTO, MoviePostGetDTO } from './movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,33 @@ export class MoviesService {
 
   public postGet(): Observable<MoviePostGetDTO>{
     return this.http.get<MoviePostGetDTO>(`${this.apiURL}/PostGet`);
+  }
+
+  public create(movieCreationDTO: movieCreationDTO){
+    const formData = this.BuildFormData(movieCreationDTO);
+    return this.http.post(this.apiURL, formData);
+  }
+
+  private BuildFormData(movie: movieCreationDTO): FormData{
+   const formData = new FormData();
+
+    formData.append('title', movie.title);
+    formData.append('summary', movie.summary);
+    formData.append('inTheaters', String(movie.inTheaters));
+    if(movie.releaseDate){
+      formData.append('releaseDate', formatDateFormData(movie.releaseDate));
+    }
+    
+    if(movie.poster){
+      formData.append('poster', movie.poster);
+    }
+//TODO -- why do we have to use a json stringify on theses arrays?
+    formData.append('genreIds', JSON.stringify(movie.genresIds));
+    formData.append('movieTheaterIds', JSON.stringify(movie.movieTheaterIds));
+    formData.append('actors', JSON.stringify(movie.actors));
+
+
+   return formData;
   }
 
 }

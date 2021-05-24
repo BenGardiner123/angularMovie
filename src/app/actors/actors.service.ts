@@ -19,19 +19,17 @@ export class ActorsService {
     params = params.append('page', page.toString());
     params = params.append('recordsPerPage', recordsPerPage.toString());
     return this.http.get<actorDTO[]>(this.apiURL, {observe: 'response', params});
-   
   }
 
-  getById(id: number): Observable<actorDTO>{
+  getById(id: number): Observable<actorDTO> {
     return this.http.get<actorDTO>(`${this.apiURL}/${id}`);
   }
 
   searchByName(name: string): Observable<actorsMovieDTO[]>{
     const headers = new HttpHeaders('Content-Type: application/json');
-    return this.http.post<actorsMovieDTO[]>(`${this.apiURL}/searchByName`,
+    return this.http.post<actorsMovieDTO[]>(`${this.apiURL}/searchByName`, 
     JSON.stringify(name), {headers});
   }
-
 
   create(actor: actorCreationDTO){
     const formData = this.buildFormData(actor);
@@ -46,8 +44,7 @@ export class ActorsService {
   delete(id: number){
     return this.http.delete(`${this.apiURL}/${id}`);
   }
-  
-  //we need to use this to send the picture as a file to the API
+
   private buildFormData(actor: actorCreationDTO): FormData {
     const formData = new FormData();
 
@@ -57,18 +54,14 @@ export class ActorsService {
       formData.append('biography', actor.biography);
     }
 
-    if(actor.dateOfBirth){
-
+    if (actor.dateOfBirth){
       formData.append('dateOfBirth', formatDateFormData(actor.dateOfBirth));
     }
 
-    if(actor.picture){
+    if (actor.picture){
       formData.append('picture', actor.picture);
     }
 
     return formData;
-
   }
-
-
 }

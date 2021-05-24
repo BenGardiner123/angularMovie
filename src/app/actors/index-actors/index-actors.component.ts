@@ -12,7 +12,7 @@ import { ActorsService } from '../actors.service';
 })
 export class IndexActorsComponent implements OnInit {
 
-  constructor(private actorService: ActorsService) { }
+  constructor(private actorsService: ActorsService) { }
 
   actors: actorDTO[];
   columnsToDisplay = ['name', 'actions'];
@@ -21,15 +21,13 @@ export class IndexActorsComponent implements OnInit {
   pageSize = 5;
 
   ngOnInit(): void {
-    ///this loads all the actors on the page starting
     this.loadData();
   }
 
   loadData(){
-    //decoupling this logic allows us to reuse the logic when we delete to reload the page
-    this.actorService.get(this.currentPage, this.pageSize).subscribe((repsonse: HttpResponse<actorDTO[]>) => {
-      this.actors = repsonse.body;
-      this.totalAmountOfRecords = repsonse.headers.get("totalAmountOfRecords");
+    this.actorsService.get(this.currentPage, this.pageSize).subscribe((response: HttpResponse<actorDTO[]>) => {
+      this.actors = response.body;
+      this.totalAmountOfRecords = response.headers.get("totalAmountOfRecords");
     });
   }
 
@@ -40,9 +38,9 @@ export class IndexActorsComponent implements OnInit {
   }
 
   delete(id: number){
-    this.actorService.delete(id).subscribe(() =>{
+    this.actorsService.delete(id).subscribe(() => {
       this.loadData();
-        });
+    });
   }
 
 }

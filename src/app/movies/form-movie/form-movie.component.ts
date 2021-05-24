@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { movieCreationDTO, movieDTO } from '../movie.model';
 import { multipleSelectorModel } from 'src/app/utilities/mulitple-selector/multiple-selector.model';
+import { actorsMovieDTO } from 'src/app/actors/actors.models';
+import { identifierModuleUrl } from '@angular/compiler';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-form-movie',
@@ -13,13 +16,12 @@ export class FormMovieComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  form: FormGroup;
+  form: FormGroup
 
   @Input()
-  model: movieDTO;
+  model: movieDTO
 
   @Output()
-  // this is tied to the save changes button
   onSaveChanges = new EventEmitter<movieCreationDTO>();
 
   @Input()
@@ -34,30 +36,31 @@ export class FormMovieComponent implements OnInit {
   @Input()
   selectedMovieTheaters: multipleSelectorModel[] = [];
 
-//  --------------------------- end in memory data ---------------------------------------------
+  @Input()
+  selectedActors: actorsMovieDTO[]= [];
 
   ngOnInit(): void {
-  this.form = this.formBuilder.group({
-    //you can stack different validators here inside the array
-    title: ['',{
-      validators:[Validators.required]
-    }],
-    summary: '',
-    inTheaters: false,
-    trailer: '',
-    releaseDate: '',
-    poster: '',
-    genresIds: '',
-    movieTheaterIds: ''
-    
-  });
-  if(this.model !== undefined){
-    this.form.patchValue(this.model);
-  }
+    this.form = this.formBuilder.group({
+      title: ['',{
+        validators: [Validators.required]
+      }],
+      summary: '',
+      inTheaters: false,
+      trailer: '',
+      releaseDate: '',
+      poster: '',
+      genresIds: '',
+      movieTheatersIds: '',
+      actors: ''
+    });
+
+    if (this.model !== undefined){
+      this.form.patchValue(this.model);
+    }
   }
 
   onImageSelected(file: File){
-    this.form.get('poster').setValue(file)
+    this.form.get('poster').setValue(file);
   }
 
   changeMarkdown(content: string){
@@ -65,11 +68,16 @@ export class FormMovieComponent implements OnInit {
   }
 
   saveChanges(){
-    const genresIds = this.selectedGenres.map(value => value.key)
-    this.form.get('genresIds').setValue(genresIds)
+    const genresIds = this.selectedGenres.map(value => value.key);
+    this.form.get('genresIds').setValue(genresIds);
 
-    const movieTheaterIds = this.selectedMovieTheaters.map(value => value.key)
-    this.form.get('movieTheaterIds').setValue(movieTheaterIds)
+    const movieTheatersIds = this.selectedMovieTheaters.map(value => value.key);
+    this.form.get('movieTheatersIds').setValue(movieTheatersIds);
+
+    const actors = this.selectedActors.map(val => {
+      return {id: val.id, character: val.character}
+    });
+    this.form.get('actors').setValue(actors);
 
     this.onSaveChanges.emit(this.form.value);
   }

@@ -13,7 +13,7 @@ import { ActorsService } from '../actors.service';
 })
 export class ActorsAutocompleteComponent implements OnInit {
 
-  constructor(private actorsServoe: ActorsService) { }
+  constructor(private actorsService: ActorsService) { }
 
   control: FormControl = new FormControl();
 
@@ -26,27 +26,26 @@ export class ActorsAutocompleteComponent implements OnInit {
 
   columnsToDisplay = ['picture', 'name', 'character', 'actions'];
 
+
   ngOnInit(): void {
     this.control.valueChanges.subscribe(value => {
-      this.actorsServoe.searchByName(value).subscribe(actors => {
-        this.actorsToDisplay = actors; 
-      })
+      this.actorsService.searchByName(value).subscribe(actors => {
+        this.actorsToDisplay = actors;
+      });
     })
   }
 
-  
   optionSelected(event: MatAutocompleteSelectedEvent){
     console.log(event.option.value);
 
-    //TODO -- add control.patchValue to list of stuff to go over learning again
     this.control.patchValue('');
-    //get the selected actors and their id's and check them against the id in the event. If they match dont do anything other wise we add duplicates.
-    if(this.selectedActors.findIndex(x => x.id == event.option.value.id) !== -1){
+
+    if (this.selectedActors.findIndex(x => x.id == event.option.value.id) !== -1){
       return;
     }
+
     this.selectedActors.push(event.option.value);
-  
-    if(this.table !== undefined){
+    if (this.table !== undefined){
       this.table.renderRows();
     }
   }
@@ -58,11 +57,8 @@ export class ActorsAutocompleteComponent implements OnInit {
   }
 
   dropped(event: CdkDragDrop<any[]>){
-    //this gets the idex of the actor in the array when the action happens
     const previousIndex = this.selectedActors.findIndex(actor => actor === event.item.data);
-    //this built in function "moveItemInArray" then allwos us to pass in the three params to set the new order
     moveItemInArray(this.selectedActors, previousIndex, event.currentIndex);
-    // then we render the table with the new order
     this.table.renderRows();
   }
 
