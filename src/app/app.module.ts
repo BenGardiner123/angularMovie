@@ -40,6 +40,9 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { MulitpleSelectorComponent } from './utilities/mulitple-selector/mulitple-selector.component';
 import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors-autocomplete.component';
 import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
+import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
+import { SafePipe } from './safe.pipe';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +74,9 @@ import { DisplayErrorsComponent } from './utilities/display-errors/display-error
     MulitpleSelectorComponent,
     ActorsAutocompleteComponent,
     DisplayErrorsComponent,
+    MovieDetailsComponent,
+    SafePipe,
+   
    
     
     

@@ -78,6 +78,7 @@ export class FormMovieComponent implements OnInit {
       return {id: val.id, character: val.character}
     });
     this.form.get('actors').setValue(actors);
+    
 
     this.onSaveChanges.emit(this.form.value);
   }
