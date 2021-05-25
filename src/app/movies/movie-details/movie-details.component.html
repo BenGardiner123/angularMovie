@@ -1,7 +1,6 @@
 <div *ngIf="movie" style="display: flex">
     <div>
-        <h2>
-            {{movie.title}} {{releaseDate.getFullYear()}}
+        <h2>{{movie.title}} {{releaseDate.getFullYear()}}</h2>
 
             <mat-chip-list>
                 <mat-chip 
@@ -13,7 +12,7 @@
             </mat-chip-list> | {{releaseDate.toDateString()}} | Average 0.0 | your vote: 0.0
 
             <div style="display: flex">
-                
+
                 <span style="display: inline-block; margin-right: 1rem">
                     <img [src]="movie.poster" style="width: 225px; height: 315px" />
                 </span>
@@ -29,9 +28,35 @@
                   >
                   </iframe>
                 </div>
-              </div>
+            </div>
 
-        </h2>
+            <div style="margin-top: 1rem;">
+                <h3>Summary</h3>
+                <div>
+                    <markdown [data]="movie.summary" ngPreserveWhitespaces></markdown>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem;">
+                <h3>Actors</h3>
+                <div style="display:flex; flex-direction: column;">
+                    <div *ngFor="let actors of movie.actors" style="margin-bottom: 2px;">
+                        <img [src]="actors.picture" style="width: 50px; vertical-align: middle" alt=""/> 
+                        <span style="display: inline-block; width: 200px; margin-left: 1rem;">
+                            {{actors.name}}
+                        </span>
+                        <span style="display: inline-block; width: 45px;">
+                            ....
+                        </span>
+                        <span>{{actors.character}}</span>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    <div style="padding-left: 1rem; position: relative; width: 100%" *ngIf="coordinates.length > 0">
+        <h2>Displaying in the following movie theaters</h2>
+        <app-map [initialCoordinates]="coordinates"></app-map>
     </div>
 
 </div>
