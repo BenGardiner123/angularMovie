@@ -78,9 +78,9 @@ export class FormMovieComponent implements OnInit {
       return {id: val.id, character: val.character}
     });
     this.form.get('actors').setValue(actors);
-    
 
     this.onSaveChanges.emit(this.form.value);
+    console.log('this is the saveChanegs methid in form-movie component', this.form.value);
   }
 
 }

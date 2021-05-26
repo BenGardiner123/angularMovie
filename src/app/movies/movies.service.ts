@@ -24,10 +24,12 @@ export class MoviesService {
 
   public create(movieCreationDTO: movieCreationDTO){
     const formData = this.BuildFormData(movieCreationDTO);
+    console.log('this is from inside the create http method', formData);
     return this.http.post(this.apiURL, formData);
+    
   }
 
-  private BuildFormData(movie: movieCreationDTO): FormData{
+  public BuildFormData(movie: movieCreationDTO): FormData{
    const formData = new FormData();
 
     formData.append('title', movie.title);
@@ -46,7 +48,7 @@ export class MoviesService {
     formData.append('movieTheaterIds', JSON.stringify(movie.movieTheaterIds));
     formData.append('actors', JSON.stringify(movie.actors));
 
-
+    console.log(formData.get('movieTheaterIds'))
    return formData;
   }
 
