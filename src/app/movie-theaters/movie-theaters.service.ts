@@ -23,6 +23,7 @@ export class MovieTheatersService {
   }
 
   public create(movieTheaterDTO: movieTheatersCreationDTO){
+    console.log(movieTheaterDTO);
     return this.http.post(this.apiURL, movieTheaterDTO);
   }
 
