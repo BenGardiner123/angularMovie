@@ -23,6 +23,13 @@ export class MoviesFilterComponent implements OnInit {
 
   movies: movieDTO[];
 
+  currentPage = 1;
+  recordsPerPage = 10;
+
+  //this will hold the inital form values, apperetly using the form.reset can interfere with certain properties of the form
+  //TODO check form.reset interfering with props on the form MSDN?
+  initalFormValues: any;
+
   
 
   ngOnInit(): void {
@@ -32,6 +39,8 @@ export class MoviesFilterComponent implements OnInit {
       upcomingReleases: false,
       inTheaters: false
   });
+
+  this.initalFormValues = this.form.value;
 
   this.genresService.getAll().subscribe(genres => {
     this.genres = genres;
@@ -45,13 +54,16 @@ export class MoviesFilterComponent implements OnInit {
   }
 
   filterMovies(values: any){
+    // set the default values for the pagination then make the http call throught he service
+    values.page = this.currentPage;
+    values.recordsPerPage = this.recordsPerPage;
     this.moviesService.filter(values).subscribe((response: HttpResponse<movieDTO[]>) => {
       this.movies = response.body;
     })
   }
 
-  cleanForm(){
-    this.form.reset;
+  clearForm(){
+    this.form.patchValue(this.initalFormValues);
   }
 
 }
