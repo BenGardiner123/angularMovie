@@ -34,8 +34,8 @@ export class CreateMovieComponent implements OnInit {
   saveChanges(movieCreationDTO: movieCreationDTO){
     console.log('this is form save changes in the create movie component', movieCreationDTO);
     this.moviesService.create(movieCreationDTO).subscribe(id => {
-      this.router.navigate(['/movie/' + id]);
-    })
+      this.router.navigate(['/movie/' + id])
+    });
   }
 
 }

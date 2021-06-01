@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { latLng, LeafletMouseEvent, marker, Marker, tileLayer, icon } from 'leaflet';
 import * as L from 'leaflet';
-import { coordinatesMap } from './coordinate';
+import { coordinatesMap, coordinatesMapWithMessage } from './coordinate';
 
 //https://www.digitalocean.com/community/tutorials/angular-angular-and-leaflet-marker-service
 //even though i followed the directions form asyemetirux it didnt work ... this did though
@@ -32,11 +32,20 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.layers = this.initialCoordinates.map(value => marker([value.latitude, value.longitude]))
+    this.layers = this.initialCoordinates.map(value => {
+     const m = marker([value.latitude, value.longitude]);
+     if(value.message){
+       m.bindPopup(value.message, {autoClose: false,autoPan: false } )
+     }
+     return m
+    });
   }
 
   @Input()
-  initialCoordinates: coordinatesMap[]= [];
+  initialCoordinates: coordinatesMapWithMessage[]= [];
+
+  @Input()
+  editMode: boolean = true;
 
   @Output()
   onSelectedLocation = new EventEmitter<coordinatesMap>();
@@ -55,12 +64,15 @@ export class MapComponent implements OnInit {
   layers: Marker<any>[] = [];
 
   handleMapClick(event: LeafletMouseEvent){
-    const latitude = event.latlng.lat;
-    const longitude = event.latlng.lng;
-    console.log({latitude, longitude});
-    this.layers = [];
-    this.layers.push(marker([latitude, longitude]));
-    this.onSelectedLocation.emit({latitude, longitude});
+    if(this.editMode){
+      const latitude = event.latlng.lat;
+      const longitude = event.latlng.lng;
+      console.log({latitude, longitude});
+      this.layers = [];
+      this.layers.push(marker([latitude, longitude]));
+      this.onSelectedLocation.emit({latitude, longitude});
+    }
+    
   }
 
   

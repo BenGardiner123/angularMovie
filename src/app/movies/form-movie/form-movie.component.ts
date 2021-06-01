@@ -50,7 +50,7 @@ export class FormMovieComponent implements OnInit {
       releaseDate: '',
       poster: '',
       genresIds: '',
-      movieTheatersIds: '',
+      movieTheaterIds: '',
       actors: ''
     });
 
@@ -72,7 +72,7 @@ export class FormMovieComponent implements OnInit {
     this.form.get('genresIds').setValue(genresIds);
 
     const movieTheatersIds = this.selectedMovieTheaters.map(value => value.key);
-    this.form.get('movieTheatersIds').setValue(movieTheatersIds);
+    this.form.get('movieTheaterIds').setValue(movieTheatersIds);
 
     const actors = this.selectedActors.map(val => {
       return {id: val.id, character: val.character}
