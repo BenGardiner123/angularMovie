@@ -1,6 +1,11 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { title } from 'process';
+import { genreDTO } from 'src/app/genres/genres.models';
+import { GenresService } from 'src/app/genres/genres.service';
+import { movieDTO } from '../movie.model';
+import { MoviesService } from '../movies.service';
 
 @Component({
   selector: 'app-movies-filter',
@@ -9,20 +14,16 @@ import { title } from 'process';
 })
 export class MoviesFilterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private moviesService: MoviesService, private genresService: GenresService) { }
+  
 
   form: FormGroup;
 
-  genres = [{id:1, name: 'Drama'}, {id:2, name:'Action'}]
+  genres: genreDTO[];
 
-  movies = [
-    {title: 'Spider-man', poster:'https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_UX182_CR0,0,182,268_AL_.jpg'},
-    {title: 'Mortal Kombat', poster:'https://m.media-amazon.com/images/M/MV5BY2ZlNWIxODMtN2YwZi00ZjNmLWIyN2UtZTFkYmZkNDQyNTAyXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UX182_CR0,0,182,268_AL_.jpg'},
-    {title: 'Godzilla v Kong', poster:'https://m.media-amazon.com/images/M/MV5BZmYzMzU4NjctNDI0Mi00MGExLWI3ZDQtYzQzYThmYzc2ZmNjXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_UX182_CR0,0,182,268_AL_.jpg'},
+  movies: movieDTO[];
 
-  ];
-
-  originalMovies = this.movies;
+  
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -32,19 +33,21 @@ export class MoviesFilterComponent implements OnInit {
       inTheaters: false
   });
 
-  this.form.valueChanges.subscribe(values => {
+  this.genresService.getAll().subscribe(genres => {
+    this.genres = genres;
 
-    this.movies = this.originalMovies;
-    this.filterMovies(values);
-  });
+    this.filterMovies(this.form.value);
 
-
+    this.form.valueChanges.subscribe(values => {
+      this.filterMovies(values);
+      });
+    })
   }
 
   filterMovies(values: any){
-    if (values.title){
-      this.movies = this.movies.filter(movies => movies.title.indexOf(values.title) !== -1);
-    }
+    this.moviesService.filter(values).subscribe((response: HttpResponse<movieDTO[]>) => {
+      this.movies = response.body;
+    })
   }
 
   cleanForm(){
