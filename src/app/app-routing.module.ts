@@ -17,6 +17,7 @@ import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { MoviesFilterComponent } from './movies/movies-filter/movies-filter.component';
 import { LoginComponent } from './security/login/login.component';
+import { RegisterComponent } from './security/register/register.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -39,7 +40,8 @@ const routes: Routes = [
   //the redirect here allows the wildcard which would work on  url like http://8rhfwfshbksjhbcs to take us back to the main page
   {path: 'movies/:id', component: MovieDetailsComponent},
   {path: 'login', component: LoginComponent},
-
+  {path: 'register', component: RegisterComponent},
+  
   {path: '**', redirectTo: ''}
 
 ];
