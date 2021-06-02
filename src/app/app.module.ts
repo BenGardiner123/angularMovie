@@ -42,6 +42,7 @@ import { ActorsAutocompleteComponent } from './actors/actors-autocomplete/actors
 import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { SafePipe } from './safe.pipe';
+import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { SafePipe } from './safe.pipe';
     DisplayErrorsComponent,
     MovieDetailsComponent,
     SafePipe,
+    AuthorizeViewComponent,
    
    
     
