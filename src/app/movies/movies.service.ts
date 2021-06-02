@@ -48,6 +48,10 @@ export class MoviesService {
     
   }
 
+  public delete(id: number){
+    return this.http.delete(`${this.apiURL}/${id}`);
+  }
+
   public BuildFormData(movie: movieCreationDTO): FormData{
    const formData = new FormData();
 

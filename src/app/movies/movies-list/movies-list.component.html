@@ -18,9 +18,14 @@
              <a [routerLink]="'/movies/edit/' + movie.id" mat-flat-button color="primary">
                Edit
              </a>
-             <a mat-flat-button color="warn">
+             <!-- swal = sweet alert lots of cool built in stuff -->
+             <button mat-flat-button color="warn" type="button"
+             [swal]="{title: 'Confimration', text:'Are you sure you want to delete the movie?',
+             showCancelButton: true}"
+             (confirm)="remove(movie.id)"
+             >
               Delete
-            </a>
+             </button>
            </div>
           
         </div>
