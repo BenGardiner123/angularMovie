@@ -36,11 +36,12 @@
     <div class="space" >
 
     </div>
-
+    <!-- we've injected the securty service in to the class . so we can access the moethods 
+      here to project the 'email' claim they we created inside the webapi that then gets sent inside the webtoken -->
     <app-authorize-view >
       <ng-container authorized>
-        <span>Hello, </span>
-        <a mat-button >Logout</a>
+        <span>Hello, {{securityService.getFieldfromJWT('email')}} </span>
+        <a mat-button (click)="securityService.logout()" >Logout</a>
       </ng-container>
       <ng-container notAuthorized>
         <a mat-button routerLink="login">Login</a>

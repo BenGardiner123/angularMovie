@@ -13,13 +13,43 @@ export class SecurityService {
   constructor(private http: HttpClient) { }
 
   private apiURL = environment.apiURL + "/accounts"
-
   private readonly tokenKey: string = 'token';
   private readonly expirationTokenKey: string = 'expiration'
 
 
-  isAuthenticated(): boolean{
-    return false;
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem(this.tokenKey);
+
+    if(!token){
+      return false;
+    }
+
+    const expiration = localStorage.getItem(this.expirationTokenKey);
+    const expirationDate = new Date(expiration);
+
+    if(expirationDate <= new Date()){
+      //this removes the token if its expired
+      this.logout();
+      return false;
+    }
+
+    return true;
+
+  }
+
+  getFieldfromJWT(field: string): string{
+    const token = localStorage.getItem(this.tokenKey);
+    if(!token){ return ''}
+    //splitting on the .  and getting the second part of the payload is where the claims are
+    //then return it
+    //TODO what is atob?
+    const dataToken = JSON.parse(atob(token.split('.')[1]));
+    return dataToken[field]
+  }
+
+  logout(){
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.expirationTokenKey);
   }
 
   getRole(): string{
