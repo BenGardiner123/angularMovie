@@ -1,13 +1,13 @@
 <h3>{{action}}</h3>
 
-<form (submit)="onSubmit.emit(form.value)">
+<form (submit)="onSubmit.emit(form.value)" [formGroup]="form">
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput>
         <mat-error>{{getEmailErrorMessge()}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
-        <mat-label>Passwored</mat-label>
+        <mat-label>Password</mat-label>
         <input type="password" formControlName="password" matInput>
         <mat-error>The field password is required</mat-error>
     </mat-form-field>

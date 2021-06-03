@@ -15,11 +15,11 @@ export class SecurityService {
   private apiURL = environment.apiURL + "/accounts"
 
   isAuthenticated(): boolean{
-    return true;
+    return false;
   }
 
   getRole(): string{
-    return 'admin';
+    return '';
   }
 
   register(userCredentials: userCredentials): Observable<authenticationResponse>{

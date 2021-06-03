@@ -32,7 +32,7 @@ export class AuthenticationFormComponent implements OnInit {
       password: ['', {
         validators: [Validators.required]
       }],
-    })
+    });
   }
 
   //this builds the error message - same pattern as the oother forms

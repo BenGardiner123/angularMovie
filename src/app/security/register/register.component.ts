@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { parseWebAPIErrors } from 'src/app/utilities/utils';
 import { userCredentials } from '../security.models';
 import { SecurityService } from '../security.service';
@@ -10,7 +11,7 @@ import { SecurityService } from '../security.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private securityService: SecurityService) { }
+  constructor(private securityService: SecurityService, private router: Router) { }
 
   //just a container to hold the errors to debug any potential webapi errors coming back
   errors: string[] = [];
@@ -19,8 +20,10 @@ export class RegisterComponent implements OnInit {
   }
 
   register(userCredentials: userCredentials){
-    this.securityService.register(userCredentials).subscribe(authenticatorResponse =>{
-      console.log(authenticatorResponse);
+    this.errors = [];
+    this.securityService.register(userCredentials).subscribe(authenticationResponse => {
+      console.log(authenticationResponse);
+      this.router.navigate(['/']);
     }, error => this.errors = parseWebAPIErrors(error));
   }
 }
