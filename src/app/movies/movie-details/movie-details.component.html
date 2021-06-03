@@ -9,7 +9,9 @@
                 *ngFor="let genre of movie.genres">
                         {{genre.name}}
                 </mat-chip>
-            </mat-chip-list> | {{releaseDate.toDateString()}} | Average 0.0 | your vote: 0.0
+            </mat-chip-list> 
+            | {{releaseDate.toDateString()}} | Average: {{movie.averageVote}} | your vote:
+             <app-rating (onRating)="onRating($event)" [selectedRate]="movie.userVote"></app-rating>
 
             <div style="display: flex">
 

@@ -27,7 +27,8 @@ export interface movieDTO {
     genres: genreDTO[];
     movieTheaters: movieTheatersDTO[];
     actors: actorsMovieDTO[];
-   
+    userVote: number;
+    averageVote: number;
 }
 
 export interface MoviePostGetDTO {
