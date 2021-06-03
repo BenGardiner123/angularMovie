@@ -22,7 +22,7 @@ export class AuthenticationFormComponent implements OnInit {
   action: string = 'Register';
 
   @Output()
-  onSubmit = new EventEmitter<userCredentials>()
+  onSubmit = new EventEmitter<userCredentials>();
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -31,23 +31,21 @@ export class AuthenticationFormComponent implements OnInit {
       }],
       password: ['', {
         validators: [Validators.required]
-      }],
+      }]
     });
   }
 
-  //this builds the error message - same pattern as the oother forms
-  getEmailErrorMessge(){
+  getEmailErrorMessage(){
     var field = this.form.get('email');
-    if(field.hasError('required')){
-      return "The email field is required"
+    if (field.hasError('required')){
+      return "The email field is required";
     }
 
-    if(field.hasError('email')){
-      return "The email field is invalid";
+    if (field.hasError('email')){
+      return "The email is invalid";
     }
+
     return '';
-  }
-
-  
+  }  
 
 }

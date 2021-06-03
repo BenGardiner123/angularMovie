@@ -14,6 +14,10 @@ export class SecurityService {
 
   private apiURL = environment.apiURL + "/accounts"
 
+  private readonly tokenKey: string = 'token';
+  private readonly expirationTokenKey: string = 'expiration'
+
+
   isAuthenticated(): boolean{
     return false;
   }
@@ -24,5 +28,14 @@ export class SecurityService {
 
   register(userCredentials: userCredentials): Observable<authenticationResponse>{
     return this.http.post<authenticationResponse>(this.apiURL + "/create", userCredentials);
+  }
+
+  login (userCredentials: userCredentials): Observable<authenticationResponse>{
+    return this.http.post<authenticationResponse>(this.apiURL + "/login", userCredentials);
+  }
+
+  saveToken(authenticationResponse: authenticationResponse){
+    localStorage.setItem(this.tokenKey, authenticationResponse.token);
+    localStorage.setItem(this.expirationTokenKey, authenticationResponse.expiration.toString());
   }
 }

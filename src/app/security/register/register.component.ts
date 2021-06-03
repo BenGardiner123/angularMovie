@@ -22,7 +22,9 @@ export class RegisterComponent implements OnInit {
   register(userCredentials: userCredentials){
     this.errors = [];
     this.securityService.register(userCredentials).subscribe(authenticationResponse => {
+      this.securityService.saveToken(authenticationResponse);
       console.log(authenticationResponse);
+      
       this.router.navigate(['/']);
     }, error => this.errors = parseWebAPIErrors(error));
   }

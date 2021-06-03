@@ -5,5 +5,5 @@ export interface userCredentials{
 
 export interface authenticationResponse{
     token: string;
-    expiriation: Date;
+    expiration: Date;
 }
